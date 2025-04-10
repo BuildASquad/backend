@@ -1,22 +1,20 @@
-import { Schema, model, Document } from 'mongoose';
+// user.model.ts
+import { Schema, model, Document, Types } from 'mongoose';
 
 export interface IUser extends Document {
-    name: string;
-    email: string;
-    password: string;
-    createdAt: Date;
-    updatedAt: Date;
+  email: string;
+  name: string;
+  profile_id?: Types.ObjectId;
+  photo?: string;
+  createdAt?: Date; 
+  updatedAt?: Date; 
 }
 
-const UserSchema = new Schema<IUser>(
-    {
-        name: { type: String, required: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
-    },
-    {
-        timestamps: true, // Automatically adds createdAt and updatedAt fields
-    }
-);
+const UserSchema = new Schema<IUser>({
+    email: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    profile_id: { type: Schema.Types.ObjectId, ref: 'Profile' },
+    photo: { type: String },
+}, { timestamps: true }); 
 
-export const UserModel = model<IUser>('User', UserSchema);
+export const User = model<IUser>('User', UserSchema);
