@@ -1,17 +1,16 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
-export interface IHackathon extends Document {
+export interface IHackathonWin extends Document {
   _id: string;
   title: string;
+  rank?: string;
   description?: string;
-  location?: string;
-  url?: string;
   created_at?: Date;
   updated_at?: Date;
 }
 
-const HackathonSchema = new Schema<IHackathon>(
+const HackathonWinSchema = new Schema<IHackathonWin>(
   {
     _id: {
       type: Schema.Types.String,
@@ -19,9 +18,8 @@ const HackathonSchema = new Schema<IHackathon>(
       default: uuidv4,
     },
     title: { type: String, required: true },
+    rank: { type: String },
     description: { type: String },
-    location: { type: String },
-    url: { type: String },
   },
   {
     timestamps: {
@@ -31,7 +29,7 @@ const HackathonSchema = new Schema<IHackathon>(
   }
 );
 
-export const Hackathon = mongoose.model<IHackathon>(
-  'Hackathon',
-  HackathonSchema
+export const HackathonWin = mongoose.model<IHackathonWin>(
+  'HackathonWin',
+  HackathonWinSchema
 );

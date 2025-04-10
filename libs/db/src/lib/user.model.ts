@@ -1,20 +1,48 @@
-// user.model.ts
-import { Schema, model, Document, Types } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface IUser extends Document {
+  _id: string;
   email: string;
-  name: string;
-  profile_id?: Types.ObjectId;
+  first_name: string;
+  last_name: string;
   photo?: string;
-  createdAt?: Date; 
-  updatedAt?: Date; 
+  created_at?: Date;
+  updated_at?: Date;
 }
 
-const UserSchema = new Schema<IUser>({
-    email: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    profile_id: { type: Schema.Types.ObjectId, ref: 'Profile' },
-    photo: { type: String },
-}, { timestamps: true }); 
+const UserSchema = new Schema<IUser>(
+  {
+    _id: {
+      type: Schema.Types.String,
+      required: true,
+      default: uuidv4,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    first_name: {
+      type: String,
+      required: true,
+    },
+    last_name: {
+      type: String,
+      required: true,
+    },
+    photo: {
+      type: String,
+    },
+  },
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  }
+);
 
-export const User = model<IUser>('User', UserSchema);
+UserSchema.index({ email: 1 }, { unique: true });
+
+export const User = mongoose.model<IUser>('User', UserSchema);
