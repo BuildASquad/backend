@@ -10,7 +10,7 @@
         "outputs": [
           "{options.outputPath}"
         ],
-        "defaultConfiguration": "production",
+        "defaultConfiguration": "development",
         "options": {
           "platform": "node",
           "outputPath": "apps/backend/dist",
@@ -31,7 +31,14 @@
           }
         },
         "configurations": {
-          "development": {},
+          "development": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          },
           "production": {
             "esbuildOptions": {
               "sourcemap": false,
@@ -55,9 +62,6 @@
         "configurations": {
           "development": {
             "buildTarget": "backend:build:development"
-          },
-          "production": {
-            "buildTarget": "backend:build:production"
           }
         }
       }
