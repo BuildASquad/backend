@@ -21,7 +21,6 @@ const UserSchema = new Schema<IUser>(
     },
     email: {
       type: String,
-      unique: true
     },
     first_name: {
       type: String
