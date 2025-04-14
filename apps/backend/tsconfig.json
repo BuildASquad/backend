@@ -9,6 +9,8 @@
   ],
   "compilerOptions": {
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "module": "es2022",
+    "target": "es2017"
   }
 }
