@@ -6,6 +6,8 @@
     "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     // "allowImportingTsExtensions": true
   },
   "include": ["src/**/*.ts"],

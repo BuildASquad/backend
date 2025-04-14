@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { User, IUser } from '@db';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -39,6 +40,7 @@ export class AuthController implements IAuthController {
 
       const token = this.createToken(user._id, user.email);
       return res.status(200).json({ email, token });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }
@@ -46,6 +48,7 @@ export class AuthController implements IAuthController {
 
   public async signupUser(req: Request, res: Response): Promise<Response> {
     try {
+      // eslint-disable-next-line prefer-const
       let { first_name, last_name, email, password } = req.body;
 
       if (email) email = email.trim();
@@ -81,6 +84,7 @@ export class AuthController implements IAuthController {
 
       const token = this.createToken(user._id, user.email);
       return res.status(200).json({ email, token });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }

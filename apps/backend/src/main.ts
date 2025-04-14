@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { connectMongoDB } from '@db';
 import routes from './routes';
 const HOST = process.env.HOST ?? 'localhost';
