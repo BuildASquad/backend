@@ -1,10 +1,13 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import { connectMongoDB } from '@db';
 import routes from './routes';
 const HOST = process.env.HOST ?? 'localhost';
 const PORT = process.env.PORT || 3000;
 
 
+
+dotenv.config();
 const app = express();
 connectMongoDB();
 
