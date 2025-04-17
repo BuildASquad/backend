@@ -3,5 +3,5 @@ export interface IDataSource {
 }
 
 export interface IUserDataSource {
-  getUsers: () => Promise<any>;
+  getUsers: () => Promise<unknown>;
 }

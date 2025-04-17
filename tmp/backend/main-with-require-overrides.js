@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs');
 const originalResolveFilename = Module._resolveFilename;
 const distPath = __dirname;
-const manifest = [{"module":"@db","exactMatch":"libs/db/src/index.js","pattern":"libs/db/src/index.ts"}];
+const manifest = [{"module":"@backend/shared-models","exactMatch":"shared-models/src/index.js","pattern":"shared-models/src/index.ts"},{"module":"@db","exactMatch":"libs/db/src/index.js","pattern":"libs/db/src/index.ts"}];
 
 Module._resolveFilename = function(request, parent) {
   let found;
