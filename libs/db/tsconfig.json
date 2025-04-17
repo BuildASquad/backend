@@ -4,7 +4,9 @@
     "baseUrl": "./src",
     "paths": {
       "@db": ["../../libs/db/src"]
-    }
+    },
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "./src",

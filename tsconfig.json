@@ -13,10 +13,13 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@db": ["libs/db/src/index.ts"]
-    }
+      "@db": ["libs/db/src"]
+    },
+    "rootDirs": ["apps/backend/src", "libs/db/src"]
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -8,7 +8,6 @@ export interface IUser extends Document {
   last_name?: string;
   password?: string;
   photo?: string;
-  provider?: 'local' | 'google';
   googleId?: string;
   created_at?: Date;
   updated_at?: Date;
@@ -23,7 +22,6 @@ const UserSchema = new Schema<IUser>(
     email: {
       type: String,
       required: true,
-      unique: true,
       lowercase: true,
       trim: true,
     },
@@ -39,11 +37,11 @@ const UserSchema = new Schema<IUser>(
     photo: {
       type: String,
     },
-    provider: {
-      type: String,
-      enum: ['local', 'google'],
-      default: 'local',
-    },
+    // provider: {
+    //   type: String,
+    //   enum: ['local', 'google'],
+    //   default: 'local',
+    // },
     googleId: {
       type: String,
     },

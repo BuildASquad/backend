@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { IAuthController } from './types';
-import passport from 'passport'
+import passport from 'passport';
 
 export class AuthController implements IAuthController {
   private createToken(_id: string, email: string): string {
@@ -33,13 +33,14 @@ export class AuthController implements IAuthController {
         return res.status(400).json({ error: 'Email not valid' });
       }
 
-      const match = await bcrypt.compare(password, user.password);
+      const match = await bcrypt.compare(password, user.password!);
       if (!match) {
         return res.status(400).json({ error: 'Incorrect Password' });
       }
 
       const token = this.createToken(user._id, user.email);
       return res.status(200).json({ email, token });
+    
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }
@@ -47,7 +48,8 @@ export class AuthController implements IAuthController {
 
   public async signupUser(req: Request, res: Response): Promise<Response> {
     try {
-      let { first_name, last_name, email, password } = req.body;
+      const {first_name, last_name} = req.body
+      let { email, password } = req.body;
 
       if (email) email = email.trim();
       if (password) password = password.trim();
@@ -82,32 +84,16 @@ export class AuthController implements IAuthController {
 
       const token = this.createToken(user._id, user.email);
       return res.status(200).json({ email, token });
+    
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }
-  }
-
-  public googleAuth = passport.authenticate('google', {
-    scope: ['profile', 'email'],
-  });
-
-  public googleAuthCallback = async (req: Request, res: Response): Promise<Response> => {
-    try {
-      const user: IUser = req.user as IUser; // Passport attaches the user to req.user
-
-      if (!user) {
-        return res.status(400).json({ message: 'Google authentication failed' });
-      }
-
-      // Generate a JWT token for the authenticated user
-      const token = this.createToken(user._id, user.email);
-
-      // Redirect to frontend with token as query param or send token in JSON response
-      res.redirect(`http://localhost:3001/dashboard?token=${token}`);
-    } catch (error: any) {
-      // Handle errors gracefully
-      res.status(500).json({ error: error.message });
-    }
   };
-}
 
+  googleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
+
+  googleCallback = passport.authenticate('google', {
+    successRedirect: 'http://localhost:3001/dashboard', //currently hardcoded for my setup,need to change when connecting with our frontend
+    failureRedirect: 'http://localhost:3001/login'
+  });
+}
