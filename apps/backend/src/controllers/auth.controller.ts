@@ -93,7 +93,7 @@ export class AuthController implements IAuthController {
   googleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
 
   googleCallback = passport.authenticate('google', {
-    successRedirect: 'http://localhost:3001/dashboard', //currently hardcoded for my setup,need to change when connecting with our frontend
-    failureRedirect: 'http://localhost:3001/login'
+    successRedirect: 'http://localhost:5173/dashboard', //currently hardcoded for my setup,need to change when connecting with our frontend
+    failureRedirect: 'http://localhost:5173/login'
   });
 }
