@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { DocumentNode } from 'graphql';
-import exampleDefs from './example';
+import userDefs from './user';
+import { s3Schema } from './s3';
 
 const rootDefs = gql`
   type Query {
@@ -17,6 +18,9 @@ const rootDefs = gql`
 `;
 
 const typeDefs: DocumentNode[] = [];
-typeDefs.push(rootDefs, exampleDefs);
+typeDefs.push(rootDefs, 
+              userDefs, 
+              s3Schema
+             );
 
 export default typeDefs;

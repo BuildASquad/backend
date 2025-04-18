@@ -1,7 +1,10 @@
+// resolvers/index.ts
 import { merge } from 'lodash';
 
-import exampleResolvers from './example';
+import userResolvers from './user';
+import s3Resolvers from './s3';
 
-const resolvers = merge(exampleResolvers);
+const resolvers = merge(userResolvers, 
+                        s3Resolvers);
 
 export default resolvers;
