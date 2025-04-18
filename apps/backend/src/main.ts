@@ -4,7 +4,7 @@ import { connectMongoDB } from '@db';
 import routes from './routes/v1/index';
 import passport from 'passport'
 import session from 'express-session'
-import { setupGoogleStrategy } from './config/passport';
+import { setupGoogleStrategy,setupGitHubStrategy } from './config/passport';
 const HOST = process.env.HOST ?? 'localhost';
 const PORT = process.env.PORT || 3000;
 
@@ -27,6 +27,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session())
 setupGoogleStrategy()
+setupGitHubStrategy()
 app.use(routes);
 
 
