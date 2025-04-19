@@ -16,8 +16,14 @@ router.get('/google/callback', authController.googleCallback);
 router.get('/github', authController.githubLogin);
 router.get('/github/callback', authController.githubCallback);
 
+//forgot-password
+router.post('/forgot-password',authController.forgotPassword)
+//reset-password
+router.post('/reset-password/:id/:token',authController.resetPassword)
+
 router.get('/getUsers',authController.getUsers)
 router.post('/deleteUser',authController.deleteUser)
+
 
 
 export default router;
