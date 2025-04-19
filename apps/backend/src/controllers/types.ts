@@ -1,4 +1,14 @@
 import express from 'express';
+import { IUser } from '@db';
+
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare global {
+  namespace Express {
+    interface Request {
+      user?: IUser; 
+    }
+  }
+}
 
 export interface IHomeController {
   getHome: (
