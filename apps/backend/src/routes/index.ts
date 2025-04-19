@@ -1,7 +1,6 @@
 import express from 'express';
 import v1 from './v1/index';
 
-
 const router = express.Router();
 
 router.get('/', (req, res) => res.send(`<pre>Backend API 🔥🚀</pre>`));

@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-import { connectMongoDB } from '@db'; 
+import { connectMongoDB } from '@db';
 import routes from './routes';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
@@ -15,9 +15,8 @@ const HOST = process.env.HOST ?? 'localhost';
 const PORT = process.env.PORT || 3000;
 
 async function startServer() {
-  
-dotenv.config();
-const app = express();
+  dotenv.config();
+  const app = express();
   connectMongoDB();
 
   app.use(express.json());
@@ -34,9 +33,12 @@ const app = express();
   });
 
   await apolloServer.start();
-  app.use('/graphql', expressMiddleware(apolloServer, {
-    context: async ({ req }) => ({ dataSources: dataSource, req }),
-  }));
+  app.use(
+    '/graphql',
+    expressMiddleware(apolloServer, {
+      context: async ({ req }) => ({ dataSources: dataSource, req }),
+    })
+  );
 
   app.use(routes);
 

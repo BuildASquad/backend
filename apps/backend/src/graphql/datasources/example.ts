@@ -5,6 +5,6 @@ export default class UserDataSource implements IUserDataSource {
   getUsers = async () => {
     // const user = await User.find({});
     // return user;
-    return null
+    return null;
   };
 }

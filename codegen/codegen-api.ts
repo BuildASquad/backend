@@ -4,8 +4,7 @@ const config: CodegenConfig = {
   schema: [
     {
       'http://localhost:4242/graphql': {
-        headers: {
-        },
+        headers: {},
       },
     },
   ],

@@ -8,8 +8,5 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "./src",
-    "../../libs/db/src"
-  ]
+  "include": ["./src", "../../libs/db/src"]
 }

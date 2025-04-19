@@ -9,6 +9,12 @@ export interface IHomeController {
 }
 
 export interface IAuthController {
-  loginUser: (req: express.Request, res: express.Response) => Promise<express.Response>;
-  signupUser: (req: express.Request, res: express.Response) => Promise<express.Response>;
+  loginUser: (
+    req: express.Request,
+    res: express.Response
+  ) => Promise<express.Response>;
+  signupUser: (
+    req: express.Request,
+    res: express.Response
+  ) => Promise<express.Response>;
 }

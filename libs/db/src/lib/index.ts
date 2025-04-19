@@ -2,7 +2,7 @@ export * from './user.model';
 export * from './profile.model';
 export * from './project.model';
 export * from './experience.model';
-export * from './hackathon-win.model'
+export * from './hackathon-win.model';
 export * from './friend.model';
 export * from './hackathon.model';
 export * from './hackathon-interest.model';

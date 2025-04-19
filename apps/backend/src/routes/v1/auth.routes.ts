@@ -9,4 +9,3 @@ router.post('/login', authController.loginUser);
 router.post('/signup', authController.signupUser);
 
 export default router;
-

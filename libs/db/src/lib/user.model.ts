@@ -24,16 +24,16 @@ const UserSchema = new Schema<IUser>(
       required: true,
     },
     first_name: {
-      type: String
+      type: String,
     },
     last_name: {
-      type: String
+      type: String,
     },
-    password:{
-      type:String
+    password: {
+      type: String,
     },
     photo: {
-      type: String
+      type: String,
     },
   },
   {
