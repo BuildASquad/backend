@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-// eslint-disable-next-line @nx/enforce-module-boundaries
+ 
 import { User, IUser } from '@db';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';

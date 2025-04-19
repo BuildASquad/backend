@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@backend/libs": ["libs/src/index.ts"],
       "@backend/shared-models": ["shared-models/src/index.ts"],
       "@db": ["libs/db/src/index.ts"]
     }

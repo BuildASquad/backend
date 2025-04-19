@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IHomeController } from './types';
-// eslint-disable-next-line @nx/enforce-module-boundaries
+ 
 import { User } from '@db';
 
 export default class HomeController implements IHomeController {

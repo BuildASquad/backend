@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { connectMongoDB } from '@db';
+
+import { connectMongoDB } from '@db'; 
 import routes from './routes';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
