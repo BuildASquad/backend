@@ -3,11 +3,11 @@ import { IUserDataSource } from './types';
 
 export default class UserDataSource implements IUserDataSource {
   getUsers = async () => {
-    const users = await User.find({}).sort({ created_at: -1 });
+    const users = await User.find({}).sort({ created_at: -1 }); //latest created users at top
     return users;
   };
 
-  async getUserById(userId: string) {
+  getUserById = async(userId: string) => {
     try {
       const user = await User.findById(userId);
       
@@ -22,7 +22,7 @@ export default class UserDataSource implements IUserDataSource {
     }
   }
 
-  async updateUserPhoto(userId: string, photoUrl: string) {
+  updateUserPhoto = async (userId: string, photoUrl: string) => {
     try {
       const user = await User.findByIdAndUpdate(
         userId, 
@@ -41,7 +41,7 @@ export default class UserDataSource implements IUserDataSource {
     }
   }
 
-  async deletePhoto(userId: string) {
+  deletePhoto = async (userId: string) => {
     try {
       const user = await User.findByIdAndUpdate(
         userId,

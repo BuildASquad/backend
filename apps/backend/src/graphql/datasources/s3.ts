@@ -6,7 +6,7 @@ export class S3API implements IS3DataSource {
 
    getPresignedUrl = async(fileType: string, folder?: string) => {
     const fileExt = fileType.split('/')[1];
-    const safeFolder = folder?.replace(/[^a-zA-Z0-9/_-]/g, '') || 'profile-picture';
+    const safeFolder = folder?.replace(/[^a-zA-Z0-9/_-]/g, '') || 'profile-picture'; // can remove this profile-picture later
     const fileName = `${safeFolder}/${uuidv4()}.${fileExt}`;
 
     const upload_url = await generatePresignedUrl(fileName, fileType);

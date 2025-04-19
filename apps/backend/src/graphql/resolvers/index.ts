@@ -1,4 +1,3 @@
-// resolvers/index.ts
 import { merge } from 'lodash';
 
 import userResolvers from './user';
