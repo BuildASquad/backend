@@ -17,34 +17,40 @@ const PORT = process.env.PORT || 3000;
 async function startServer() {
   dotenv.config();
   const app = express();
-  connectMongoDB();
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.static('public'));
+  try {
+    await connectMongoDB();
 
-  const dataSource = {
-    user: new UserDataSource(),
-  };
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.static('public'));
 
-  const schema = makeExecutableSchema({ typeDefs, resolvers });
-  const apolloServer = new ApolloServer<ApolloContext>({
-    schema,
-  });
+    const dataSource = {
+      user: new UserDataSource(),
+    };
 
-  await apolloServer.start();
-  app.use(
-    '/graphql',
-    expressMiddleware(apolloServer, {
-      context: async ({ req }) => ({ dataSources: dataSource, req }),
-    })
-  );
+    const schema = makeExecutableSchema({ typeDefs, resolvers });
+    const apolloServer = new ApolloServer<ApolloContext>({
+      schema,
+    });
 
-  app.use(routes);
+    await apolloServer.start();
+    app.use(
+      '/graphql',
+      expressMiddleware(apolloServer, {
+        context: async ({ req }) => ({ dataSources: dataSource, req }),
+      })
+    );
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://${HOST}:${PORT}`);
-  });
+    app.use(routes);
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running on http://${HOST}:${PORT}`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to connect to MongoDB:', error);
+    process.exit(1); // Exit the process if MongoDB connection fails
+  }
 }
 
 // Call the function to start the server
