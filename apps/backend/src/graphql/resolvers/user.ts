@@ -3,6 +3,9 @@ const resolvers = {
     users: async (_: any, __: any, { dataSources }:any) => {
       return dataSources.user.getUsers();
     },
+    user: async (_: any, { id }: { id: string }, { dataSources }:any) => {
+      return dataSources.user.getUserById(id);
+    },
   },
   Mutation: {
     updateUserPhoto: async (
@@ -17,18 +20,15 @@ const resolvers = {
       { userId }: { userId: string },
       { dataSources }: any
     ) => {
-      // First get the user to get the photo URL
-      const users = await dataSources.user.getUsers();
-      const user = users.find((u: any) => u._id.toString() === userId);
+      const user = await dataSources.user.getUserById(userId);
       
-      if (user && user.photo) {
-        // Delete the file from S3
+      if (user.photo) {
         await dataSources.s3.deleteProfilePhoto(user.photo);
       }
       
-      // Remove the photo field from the user
       return dataSources.user.deletePhoto(userId);
     }
   }
 };
+
 export default resolvers;

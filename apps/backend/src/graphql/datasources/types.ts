@@ -5,6 +5,7 @@ export interface IDataSource {
 
 export interface IUserDataSource {
   getUsers: () => Promise<unknown>;
+  getUserById: (userId: string) => Promise<unknown>;
   updateUserPhoto: (userId: string, photoUrl: string) => Promise<unknown>;
   deletePhoto: (userId: string) => Promise<unknown>;
 }

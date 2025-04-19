@@ -3,9 +3,24 @@ import { IUserDataSource } from './types';
 
 export default class UserDataSource implements IUserDataSource {
   getUsers = async () => {
-    const user = await User.find({});
-    return user;
+    const users = await User.find({}).sort({ created_at: -1 });
+    return users;
   };
+
+  async getUserById(userId: string) {
+    try {
+      const user = await User.findById(userId);
+      
+      if (!user) {
+        throw new Error(`User with ID ${userId} not found`);
+      }
+      
+      return user;
+    } catch (error) {
+      console.error('Error finding user by ID:', error);
+      throw error;
+    }
+  }
 
   async updateUserPhoto(userId: string, photoUrl: string) {
     try {
