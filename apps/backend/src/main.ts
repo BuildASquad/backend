@@ -8,7 +8,8 @@ import { expressMiddleware } from '@apollo/server/express4';
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
 import { makeExecutableSchema } from '@graphql-tools/schema';
-import UserDataSource from './graphql/datasources/example';
+import UserDataSource from './graphql/datasources/user';
+import { S3API } from './graphql/datasources/s3'; 
 import { ApolloContext } from './graphql/types';
 
 const HOST = process.env.HOST ?? 'localhost';
@@ -16,8 +17,8 @@ const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   
-dotenv.config();
-const app = express();
+  dotenv.config();
+  const app = express();
   connectMongoDB();
 
   app.use(express.json());
@@ -26,6 +27,7 @@ const app = express();
 
   const dataSource = {
     user: new UserDataSource(),
+    s3: new S3API(),
   };
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });

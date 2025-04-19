@@ -5,7 +5,7 @@ export interface IHackathon extends Document {
   _id: string;
   title: string;
   description?: string;
-  location?: string;
+  location_id?: string;
   url?: string;
   created_at?: Date;
   updated_at?: Date;
@@ -20,7 +20,7 @@ const HackathonSchema = new Schema<IHackathon>(
     },
     title: { type: String, required: true },
     description: { type: String },
-    location: { type: String },
+    location_id: { type: String },
     url: { type: String },
   },
   {

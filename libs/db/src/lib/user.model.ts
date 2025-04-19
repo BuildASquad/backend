@@ -8,6 +8,7 @@ export interface IUser extends Document {
   last_name: string;
   password: string;
   photo?: string;
+  profile_id: string;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -30,9 +31,12 @@ const UserSchema = new Schema<IUser>(
       type: String
     },
     password:{
-      type:String
+      type: String
     },
     photo: {
+      type: String
+    },
+    profile_id: {
       type: String
     },
   },

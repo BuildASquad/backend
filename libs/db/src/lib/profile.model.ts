@@ -5,19 +5,7 @@ export interface ILink {
   name: string;
   link: string;
 }
-export interface IAddress extends Document {
-  street: string;
-  city: string;
-  state: string;
-  country: string;
-  postal_code: string;
-  state_code: string;
-  country_code: string;
-  coordinates?: {
-    latitude: number;
-    longitude: number;
-  };
-}
+
 export interface IProfile extends Document {
   _id: string;
   user_id: string;
@@ -25,7 +13,7 @@ export interface IProfile extends Document {
   branch?: string;
   year?: string;
   links: ILink[];
-  address?: IAddress;
+  location_id?: string;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -38,20 +26,6 @@ const LinkSchema = new Schema<ILink>(
   { _id: false }
 );
 
-const AddressSchema = new Schema<IAddress>({
-  street: { type: String, required: true },
-  city: { type: String, required: true },
-  state: { type: String, required: true },
-  country: { type: String, required: true },
-  postal_code: { type: String, required: true },
-  state_code: { type: String, required: true },
-  country_code: { type: String, required: true },
-  coordinates: {
-    latitude: { type: Number },
-    longitude: { type: Number },
-  },
-});
-
 const ProfileSchema = new Schema<IProfile>(
   {
     _id: {
@@ -63,8 +37,8 @@ const ProfileSchema = new Schema<IProfile>(
     college: { type: String },
     branch: { type: String },
     year: { type: String },
-    links: LinkSchema,
-    address: AddressSchema,
+    links: [LinkSchema],
+    location_id:{ type: String },
   },
   {
     timestamps: {
