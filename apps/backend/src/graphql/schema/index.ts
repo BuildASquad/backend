@@ -18,9 +18,6 @@ const rootDefs = gql`
 `;
 
 const typeDefs: DocumentNode[] = [];
-typeDefs.push(rootDefs, 
-              userDefs, 
-              s3Schema
-             );
+typeDefs.push(rootDefs, userDefs, s3Schema);
 
 export default typeDefs;

@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   
-dotenv.config();
-const app = express();
+  dotenv.config();
+  const app = express();
   connectMongoDB();
 
   app.use(express.json());
